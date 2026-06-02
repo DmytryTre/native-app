@@ -1,13 +1,29 @@
 import { Colors, Dimensions, FontSize, Radius } from "@/tokens";
-import { Pressable, PressableProps, StyleSheet, Text, View } from "react-native";
+import { useRef } from "react";
+import { Animated, Pressable, PressableProps, StyleSheet, Text } from "react-native";
 
 const Button = ({text, ...props}: PressableProps & {text: string}) => {
+  const animValue = useRef(new Animated.Value(0)).current;
+  
+  const color = animValue.interpolate({
+    inputRange: [0, 100],
+    outputRange: [Colors.warmBrown, Colors.warmBrownHover]
+  })
+
+  const handleFade = (isPress: boolean, animValue: Animated.Value) => {
+    Animated.timing(animValue, {
+      toValue: isPress ? 100 : 0,
+      duration: 100,
+      useNativeDriver: true
+    }).start()
+    
+  }
 
   return (
-    <Pressable {...props}>
-      <View style={styles.button}>
+    <Pressable {...props} onPressIn={() => handleFade(true, animValue)} onPressOut={() => handleFade(false, animValue)}>
+      <Animated.View style={[styles.button, {backgroundColor: color}]}>
         <Text style={styles.text}>{text}</Text>
-      </View>
+      </Animated.View>
     </Pressable>
   )
 }
@@ -17,7 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: Dimensions.h62,
-    backgroundColor: Colors.warmBrown,
     borderRadius: Radius.br16,
     
   }, 
