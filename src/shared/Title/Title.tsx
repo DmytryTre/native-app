@@ -39,5 +39,6 @@ const styles = StyleSheet.create({
         fontSize: FontSize.fs34,
         color: Colors.white,
         textAlign: 'center',
+        fontFamily: 'SoraSans',
     },
 })

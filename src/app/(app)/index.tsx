@@ -1,8 +1,8 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 
 import Title from '@/shared/Title/Title'
-import Button from '../shared/Button/Button'
-import { Colors, FontSize, Gaps, Padding } from '../tokens'
+import Button from '../../shared/Button/Button'
+import { Colors, FontSize, Gaps, Padding } from '../../tokens'
 
 export default function HomeScreen() {
     return (
@@ -10,7 +10,7 @@ export default function HomeScreen() {
             <Image
                 style={styles.image}
                 resizeMode="contain"
-                source={require('../../assets/images/coffee.png')}
+                source={require('../../../assets/images/coffee.png')}
             />
             <View style={styles.content}>
                 <Title text="Одно из самых вкусных кофе в городе!" />
@@ -41,5 +41,6 @@ const styles = StyleSheet.create({
         fontSize: FontSize.fs14,
         color: Colors.darkGray,
         textAlign: 'center',
+        fontFamily: 'SoraSans',
     },
 })

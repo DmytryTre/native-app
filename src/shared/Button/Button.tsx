@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: FontSize.fs16,
         color: Colors.white,
+        fontFamily: 'SoraSans',
     },
 })
 export default Button
