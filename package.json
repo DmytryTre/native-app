@@ -21,7 +21,7 @@
     "expo-glass-effect": "~55.0.11",
     "expo-image": "~55.0.10",
     "expo-linking": "~55.0.15",
-    "expo-router": "~55.0.14",
+    "expo-router": "~55.0.16",
     "expo-splash-screen": "~55.0.21",
     "expo-status-bar": "~55.0.6",
     "expo-symbols": "~55.0.8",
@@ -40,7 +40,16 @@
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
-    "typescript": "~5.9.2"
+    "@typescript-eslint/eslint-plugin": "^8.60.1",
+    "@typescript-eslint/parser": "^8.60.1",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-native": "^5.0.0",
+    "prettier": "^3.8.3",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "^8.60.1"
   },
   "private": true
 }
