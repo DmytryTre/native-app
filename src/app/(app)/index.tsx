@@ -1,10 +1,15 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
+import { router } from 'expo-router'
 
 import Title from '@/shared/Title/Title'
 import Button from '../../shared/Button/Button'
-import { Colors, FontSize, Gaps, Padding } from '../../tokens'
+import { Colors, FontSize, Gaps, Spacing } from '../../tokens'
 
 export default function HomeScreen() {
+    const handlePress = () => {
+        router.replace('/catalog')
+    }
+
     return (
         <View style={styles.page}>
             <Image
@@ -15,7 +20,7 @@ export default function HomeScreen() {
             <View style={styles.content}>
                 <Title text="Одно из самых вкусных кофе в городе!" />
                 <Text style={styles.text}>Свежие зёрна, настоящая арабика и бережная обжарка</Text>
-                <Button text="Начать" />
+                <Button text="Начать" onPress={handlePress} />
             </View>
         </View>
     )
@@ -35,7 +40,7 @@ const styles = StyleSheet.create({
     },
     content: {
         gap: Gaps.g50,
-        padding: Padding.p30,
+        padding: Spacing.s30,
     },
     text: {
         fontSize: FontSize.fs14,

@@ -1,5 +1,31 @@
-import { Text } from 'react-native'
+import { useEffect } from 'react'
+import { View, StyleSheet } from 'react-native'
+
+import { useSetAtom } from 'jotai'
+
+import { getCoffeeAtom } from '../../../entities/coffee/model/state'
+import Search from '../../../features/search/ui/Search'
+import { Colors } from '@/tokens'
+import CoffeeCatalog from '../../../entities/coffeeCatalog/CoffeeCatalog'
 
 export default function Catalog() {
-    return <Text>Каталог</Text>
+    const getCoffee = useSetAtom(getCoffeeAtom)
+
+    useEffect(() => {
+        getCoffee()
+    }, [])
+
+    return (
+        <View style={styles.container}>
+            <Search />
+            <CoffeeCatalog />
+        </View>
+    )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: Colors.lightSilver,
+        height: '100%',
+    },
+})
