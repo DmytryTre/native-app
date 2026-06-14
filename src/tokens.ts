@@ -10,6 +10,7 @@ export const Colors = {
     darkBlue: '#2F4B4E',
     lightSilver: '#DDDDDD',
     mediumGray: '#9B9B9B',
+    ultraLightGray: '#DEDEDE',
     charcoal: '#2F2D2C',
 }
 

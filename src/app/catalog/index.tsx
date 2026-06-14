@@ -4,9 +4,9 @@ import { View, StyleSheet } from 'react-native'
 import { useSetAtom } from 'jotai'
 
 import { getCoffeeAtom } from '../../../entities/coffee/model/state'
-import CoffeeCatalog from './coffeeCatalog.tsx'
-import Search from './search'
+import Search from '../../../features/search/ui/Search'
 import { Colors } from '@/tokens'
+import CoffeeCatalog from '../../../entities/coffeeCatalog/CoffeeCatalog'
 
 export default function Catalog() {
     const getCoffee = useSetAtom(getCoffeeAtom)

@@ -6,7 +6,7 @@ import { useSetAtom } from 'jotai'
 import Input from '@/app/input'
 import { Spacing, Colors } from '@/tokens'
 import { useState } from 'react'
-import { setFiltersCoffeeAtom } from '../../../../entities/coffee/model/state'
+import { setFiltersCoffeeAtom } from '../../../entities/coffee/model/state'
 
 export default function Search() {
     const [text, setText] = useState<string>('')
