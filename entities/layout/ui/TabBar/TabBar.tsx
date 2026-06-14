@@ -3,19 +3,9 @@ import HomeIcone from '@/assets/images/icons/home'
 import RectangleIcone from '@/assets/images/icons/rectangle'
 import { Colors, Radius } from '@/tokens'
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
-import { NavigationRoute, ParamListBase, TabNavigationState } from '@react-navigation/native'
+import { ParamListBase, TabNavigationState } from '@react-navigation/native'
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native'
-
-type HandlePressProps = {
-    route: NavigationRoute<ParamListBase, string>
-    navigation: BottomTabBarProps['navigation']
-    state: BottomTabBarProps['state']
-}
-
-enum tabNames {
-    index = 'Главная',
-    success = 'Заказ',
-}
+import { HandlePressProps, tabNames } from './interfaces'
 
 export default function TabBar({ state, navigation }: BottomTabBarProps) {
     const handlePress = (props: HandlePressProps) => {
@@ -64,6 +54,9 @@ export default function TabBar({ state, navigation }: BottomTabBarProps) {
                         {index !== 0 && <View style={styles.divider} />}
                         <TouchableOpacity
                             onPress={() => handlePress({ route, navigation, state })}
+                            accessibilityLabel={tabLabel}
+                            accessibilityRole="tab"
+                            accessibilityState={{ selected: isFocused }}
                             style={styles.tab}
                         >
                             {renderIcone(isFocused, name)}
