@@ -1,6 +1,6 @@
-import { Colors, Spacing, Fonts, Radius } from '@/tokens'
 import { useRef } from 'react'
 import { Animated, Pressable, PressableProps, StyleSheet, Text } from 'react-native'
+import { Colors, Spacing, Radius, Fonts } from '../tokens'
 
 const Button = ({ text, ...props }: PressableProps & { text: string }) => {
     const animValue = useRef(new Animated.Value(0)).current

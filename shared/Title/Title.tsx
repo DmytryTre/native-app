@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { Animated, StyleSheet } from 'react-native'
-import { Colors, Fonts } from '../../tokens'
+import { Colors, Fonts } from '../tokens'
 
 export default function Title({ text }: { text: string }) {
     const positionValueY = useRef(new Animated.Value(-500)).current

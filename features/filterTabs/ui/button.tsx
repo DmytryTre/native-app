@@ -1,6 +1,6 @@
-import { Colors, Fonts, Radius, Spacing } from '@/tokens'
 import { useEffect, useRef } from 'react'
 import { Animated, Pressable, PressableProps, StyleSheet } from 'react-native'
+import { Colors, Fonts, Radius, Spacing } from '../../../shared/tokens'
 
 const Button = ({
     text,

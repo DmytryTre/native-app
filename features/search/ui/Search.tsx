@@ -3,10 +3,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { useSetAtom } from 'jotai'
 
-import Input from '@/app/input'
-import { Spacing, Colors } from '@/tokens'
 import { useState } from 'react'
 import { setFiltersCoffeeAtom } from '../../../entities/coffee/model/state'
+import Input from '../../../app/input'
+import { Spacing, Colors } from '../../../shared/tokens'
 
 export default function Search() {
     const [text, setText] = useState<string>('')

@@ -1,14 +1,11 @@
 import { Pressable, StyleSheet, TextInput, TextInputProps, View, Image } from 'react-native'
-import { Colors, Radius, Fonts, Spacing } from '../tokens'
+import { Colors, Radius, Fonts, Spacing } from '../shared/tokens'
 export default function Input(props: TextInputProps) {
     return (
         <View>
             <TextInput style={styles.input} placeholderTextColor={Colors.silver} {...props} />
             <Pressable style={styles.searchIcon}>
-                <Image
-                    resizeMode="contain"
-                    source={require('../../assets/images/icon-search.png')}
-                />
+                <Image resizeMode="contain" source={require('../assets/images/icon-search.png')} />
             </Pressable>
         </View>
     )
