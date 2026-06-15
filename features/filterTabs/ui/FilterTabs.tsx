@@ -1,7 +1,7 @@
 import { StyleSheet, FlatList } from 'react-native'
 import Button from './button'
 import { useAtomValue, useSetAtom } from 'jotai'
-import { Spacing } from '@/tokens'
+import { Gaps, Spacing } from '@/tokens'
 import { coffeeTypesAtom, setFiltersCoffeeAtom } from '../../../entities/coffee/model/state'
 
 export default function FilterTabs() {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         overflowX: 'hidden',
     },
     content: {
-        gap: 10,
+        gap: Gaps.g10,
         paddingVertical: Spacing.s30,
     },
 })

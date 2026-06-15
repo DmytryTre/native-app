@@ -1,7 +1,7 @@
 import BugIcone from '@/assets/images/icons/bug'
 import HomeIcone from '@/assets/images/icons/home'
 import RectangleIcone from '@/assets/images/icons/rectangle'
-import { Colors, Radius } from '@/tokens'
+import { Colors, Radius, Spacing } from '@/tokens'
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
 import { ParamListBase, TabNavigationState } from '@react-navigation/native'
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native'
@@ -72,14 +72,14 @@ export default function TabBar({ state, navigation }: BottomTabBarProps) {
 const styles = StyleSheet.create({
     divider: {
         width: 1,
-        height: 46,
+        height: Spacing.s46,
         marginHorizontal: 40,
         backgroundColor: Colors.ultraLightGray,
     },
     container: {
         flexDirection: 'row',
         justifyContent: 'center',
-        height: 99,
+        height: Spacing.s99,
         borderRadius: Radius.br16,
     },
     tabContainer: {
@@ -97,6 +97,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingRight: 10,
-        height: 34,
+        height: Spacing.s34,
     },
 })

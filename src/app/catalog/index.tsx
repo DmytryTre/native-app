@@ -26,6 +26,7 @@ export default function Catalog() {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.lightSilver,
+        paddingBottom: 235,
         height: '100%',
     },
 })

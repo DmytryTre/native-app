@@ -15,6 +15,8 @@ export const Colors = {
 }
 
 export const Gaps = {
+    g10: 10,
+    g20: 20,
     g50: 50,
 }
 
@@ -29,16 +31,21 @@ export const Spacing = {
     s10: 10,
     s16: 16,
     s20: 20,
+    s25: 25,
     s30: 30,
+    s34: 34,
+    s38: 38,
+    s46: 46,
     s50: 50,
+    s58: 58,
+    s63: 63,
+    s99: 99,
+    s132: 132,
 }
 
-export const Dimensions = {
-    h62: 63,
-    h38: 38,
-}
-
-export const FontSize = {
+export const Fonts = {
+    regular: 'Sora-Regular',
+    semibold: 'Sora-SemiBold',
     fs10: 10,
     fs13: 13,
     fs14: 14,

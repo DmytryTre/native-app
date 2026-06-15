@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import { BlurView } from 'expo-blur'
 import { CoffeeData } from '../../entities/coffee/model/interfaces'
-import { Colors, Radius, FontSize, Spacing } from '@/tokens'
+import { Colors, Radius, Fonts, Spacing } from '@/tokens'
 
 export default function Cart({ name, image, subTitle, price, rating }: CoffeeData) {
     return (
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: 51,
-        height: 25,
+        height: Spacing.s25,
     },
     star: {
         fontSize: 8,
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
     ratingText: {
         textAlign: 'center',
-        fontSize: FontSize.fs10,
+        fontSize: Fonts.fs10,
         color: Colors.white,
     },
     imageContainer: {
@@ -62,24 +62,24 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: 132,
+        height: Spacing.s132,
         borderRadius: Radius.br16,
     },
     textContainer: {
         padding: Spacing.s10,
     },
     title: {
-        fontSize: FontSize.fs16,
+        fontSize: Fonts.fs16,
         color: Colors.charcoal,
     },
     subTitle: {
-        fontSize: FontSize.fs13,
+        fontSize: Fonts.fs13,
         color: Colors.mediumGray,
     },
     price: {
-        fontFamily: 'Sora',
+        fontFamily: Fonts.semibold,
         color: Colors.darkBlue,
         fontWeight: '600',
-        fontSize: FontSize.fs18,
+        fontSize: Fonts.fs18,
     },
 })

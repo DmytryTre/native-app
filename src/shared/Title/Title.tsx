@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { Animated, StyleSheet } from 'react-native'
-import { Colors, FontSize } from '../../tokens'
+import { Colors, Fonts } from '../../tokens'
 
 export default function Title({ text }: { text: string }) {
     const positionValueY = useRef(new Animated.Value(-500)).current
@@ -36,9 +36,9 @@ export default function Title({ text }: { text: string }) {
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: FontSize.fs34,
+        fontSize: Fonts.fs34,
         color: Colors.white,
         textAlign: 'center',
-        fontFamily: 'SoraSans',
+        fontFamily: Fonts.regular,
     },
 })

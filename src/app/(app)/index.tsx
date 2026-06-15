@@ -3,7 +3,7 @@ import { router } from 'expo-router'
 
 import Title from '@/shared/Title/Title'
 import Button from '../../shared/Button/Button'
-import { Colors, FontSize, Gaps, Spacing } from '../../tokens'
+import { Colors, Fonts, Gaps, Spacing } from '../../tokens'
 
 export default function HomeScreen() {
     const handlePress = () => {
@@ -43,9 +43,9 @@ const styles = StyleSheet.create({
         padding: Spacing.s30,
     },
     text: {
-        fontSize: FontSize.fs14,
+        fontSize: Fonts.fs14,
         color: Colors.darkGray,
         textAlign: 'center',
-        fontFamily: 'SoraSans',
+        fontFamily: Fonts.regular,
     },
 })

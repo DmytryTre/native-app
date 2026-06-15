@@ -24,6 +24,15 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      [
+      "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Sora-Regular.ttf",
+            "./assets/fonts/Sora-SemiBold.ttf"
+          ]
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",
