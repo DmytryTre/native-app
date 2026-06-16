@@ -5,7 +5,7 @@ import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
 import { ParamListBase, TabNavigationState } from '@react-navigation/native'
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native'
 import { HandlePressProps, tabNames } from './interfaces'
-import { Spacing, Colors, Radius } from '../../../../shared/tokens'
+import { Spacing, Colors, Radius } from '@/../shared/tokens'
 
 export default function TabBar({ state, navigation }: BottomTabBarProps) {
     const handlePress = (props: HandlePressProps) => {

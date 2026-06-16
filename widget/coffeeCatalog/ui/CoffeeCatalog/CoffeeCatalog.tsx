@@ -1,11 +1,11 @@
 import { StyleSheet, FlatList, ActivityIndicator, View } from 'react-native'
 import { useAtom } from 'jotai'
 
-import FilterTabs from '../../features/filterTabs/ui/FilterTabs'
-import { getCoffeeAtom } from '../coffee/model/state'
+import FilterTabs from '@/../features/filterTabs/ui/FilterTabs'
+import { getCoffeeAtom } from '@/../entities/coffee/model/state'
 
-import { Gaps, Spacing } from '../../shared/tokens'
-import Cart from '../../app/cart'
+import { Gaps, Spacing } from '@/../shared/tokens'
+import Cart from '@/../entities/coffeeCart/ui/CoffeCart/CoffeeCart'
 
 export default function CoffeeCatalog() {
     const [coffee] = useAtom(getCoffeeAtom)

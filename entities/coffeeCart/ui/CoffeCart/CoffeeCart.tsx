@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import { BlurView } from 'expo-blur'
-import { Colors, Radius, Fonts, Spacing } from '../shared/tokens'
-import { CoffeeData } from '../entities/coffee/model/interfaces'
+import { Colors, Radius, Fonts, Spacing } from '@/../shared/tokens'
+import { CoffeeData } from '../../../coffee/model/interfaces'
 
 export default function Cart({ name, image, subTitle, price, rating }: CoffeeData) {
     return (
