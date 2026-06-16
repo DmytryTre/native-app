@@ -1,11 +1,11 @@
 import { StyleSheet, FlatList, ActivityIndicator, View } from 'react-native'
 import { useAtom } from 'jotai'
 
-import Cart from '@/app/cart'
-import FilterTabs from '../../features/filterTabs/ui/FilterTabs'
-import { getCoffeeAtom } from '../coffee/model/state'
+import FilterTabs from '@/../features/filterTabs/ui/FilterTabs'
+import { getCoffeeAtom } from '@/../entities/coffee/model/state'
 
-import { Spacing } from '@/tokens'
+import { Gaps, Spacing } from '@/../shared/tokens'
+import Cart from '@/../entities/coffeeCart/ui/CoffeCart/CoffeeCart'
 
 export default function CoffeeCatalog() {
     const [coffee] = useAtom(getCoffeeAtom)
@@ -30,8 +30,8 @@ export default function CoffeeCatalog() {
 const styles = StyleSheet.create({
     content: {
         paddingHorizontal: Spacing.s30,
-        paddingBottom: Spacing.s30,
-        rowGap: 20,
+        paddingBottom: Spacing.s20,
+        rowGap: Gaps.g20,
     },
     columnWrapper: {
         justifyContent: 'space-between',

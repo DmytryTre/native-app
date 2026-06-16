@@ -1,6 +1,6 @@
-import { Colors, Dimensions, FontSize, Radius } from '@/tokens'
 import { useRef } from 'react'
 import { Animated, Pressable, PressableProps, StyleSheet, Text } from 'react-native'
+import { Colors, Spacing, Radius, Fonts } from '../tokens'
 
 const Button = ({ text, ...props }: PressableProps & { text: string }) => {
     const animValue = useRef(new Animated.Value(0)).current
@@ -35,13 +35,13 @@ const styles = StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: Dimensions.h62,
+        height: Spacing.s63,
         borderRadius: Radius.br16,
     },
     text: {
-        fontSize: FontSize.fs16,
+        fontSize: Fonts.fs16,
         color: Colors.white,
-        fontFamily: 'SoraSans',
+        fontFamily: Fonts.regular,
     },
 })
 export default Button

@@ -1,9 +1,9 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { router } from 'expo-router'
 
-import Title from '@/shared/Title/Title'
 import Button from '../../shared/Button/Button'
-import { Colors, FontSize, Gaps, Spacing } from '../../tokens'
+import { Colors, Fonts, Gaps, Spacing } from '../../shared/tokens'
+import Title from '../../shared/Title/Title'
 
 export default function HomeScreen() {
     const handlePress = () => {
@@ -15,7 +15,7 @@ export default function HomeScreen() {
             <Image
                 style={styles.image}
                 resizeMode="contain"
-                source={require('../../../assets/images/coffee.png')}
+                source={require('../../assets/images/coffee.png')}
             />
             <View style={styles.content}>
                 <Title text="Одно из самых вкусных кофе в городе!" />
@@ -43,9 +43,9 @@ const styles = StyleSheet.create({
         padding: Spacing.s30,
     },
     text: {
-        fontSize: FontSize.fs14,
+        fontSize: Fonts.fs14,
         color: Colors.darkGray,
         textAlign: 'center',
-        fontFamily: 'SoraSans',
+        fontFamily: Fonts.regular,
     },
 })

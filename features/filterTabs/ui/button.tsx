@@ -1,6 +1,6 @@
-import { Colors, Dimensions, FontSize, Radius, Spacing } from '@/tokens'
 import { useEffect, useRef } from 'react'
 import { Animated, Pressable, PressableProps, StyleSheet } from 'react-native'
+import { Colors, Fonts, Radius, Spacing } from '../../../shared/tokens'
 
 const Button = ({
     text,
@@ -44,13 +44,13 @@ const styles = StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: Dimensions.h38,
+        height: Spacing.s38,
         borderRadius: Radius.br12,
         paddingHorizontal: Spacing.s16,
     },
     text: {
-        fontSize: FontSize.fs16,
-        fontFamily: 'SoraSans',
+        fontSize: Fonts.fs16,
+        fontFamily: Fonts.regular,
     },
 })
 export default Button

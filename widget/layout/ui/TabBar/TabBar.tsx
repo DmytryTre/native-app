@@ -1,21 +1,11 @@
 import BugIcone from '@/assets/images/icons/bug'
 import HomeIcone from '@/assets/images/icons/home'
 import RectangleIcone from '@/assets/images/icons/rectangle'
-import { Colors, Radius } from '@/tokens'
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
-import { NavigationRoute, ParamListBase, TabNavigationState } from '@react-navigation/native'
+import { ParamListBase, TabNavigationState } from '@react-navigation/native'
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native'
-
-type HandlePressProps = {
-    route: NavigationRoute<ParamListBase, string>
-    navigation: BottomTabBarProps['navigation']
-    state: BottomTabBarProps['state']
-}
-
-enum tabNames {
-    index = 'Главная',
-    success = 'Заказ',
-}
+import { HandlePressProps, tabNames } from './interfaces'
+import { Spacing, Colors, Radius } from '@/../shared/tokens'
 
 export default function TabBar({ state, navigation }: BottomTabBarProps) {
     const handlePress = (props: HandlePressProps) => {
@@ -64,6 +54,9 @@ export default function TabBar({ state, navigation }: BottomTabBarProps) {
                         {index !== 0 && <View style={styles.divider} />}
                         <TouchableOpacity
                             onPress={() => handlePress({ route, navigation, state })}
+                            accessibilityLabel={tabLabel}
+                            accessibilityRole="tab"
+                            accessibilityState={{ selected: isFocused }}
                             style={styles.tab}
                         >
                             {renderIcone(isFocused, name)}
@@ -79,14 +72,14 @@ export default function TabBar({ state, navigation }: BottomTabBarProps) {
 const styles = StyleSheet.create({
     divider: {
         width: 1,
-        height: 46,
+        height: Spacing.s46,
         marginHorizontal: 40,
         backgroundColor: Colors.ultraLightGray,
     },
     container: {
         flexDirection: 'row',
         justifyContent: 'center',
-        height: 99,
+        height: Spacing.s99,
         borderRadius: Radius.br16,
     },
     tabContainer: {
@@ -104,6 +97,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingRight: 10,
-        height: 34,
+        height: Spacing.s34,
     },
 })
