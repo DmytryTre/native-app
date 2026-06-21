@@ -3,7 +3,7 @@ import axios, { AxiosError } from 'axios'
 
 import { API } from '../api/api'
 
-import { CoffeeRequest, CoffeeResponse, CoffeeState } from './interfaces'
+import { CoffeeResponse, CoffeeState } from './interfaces'
 
 const INITIAL_STATE: CoffeeState = {
     isLoading: false,
@@ -14,39 +14,6 @@ const INITIAL_STATE: CoffeeState = {
         text: '',
     },
 }
-
-export const coffeeTypesAtom = atom([
-    { name: 'Все', type: 'all', isSelect: true },
-    { name: 'Капучино', type: 'cappuccino', isSelect: false },
-    { name: 'Латте', type: 'latte', isSelect: false },
-    { name: 'Макиатто', type: 'macchiato', isSelect: false },
-    { name: 'Американо', type: 'americano', isSelect: false },
-])
-
-export const setFiltersCoffeeAtom = atom(null, (get, set, { type, text }: CoffeeRequest) => {
-    const currentState = get(coffeeAtom)
-    const coffeeTypes = get(coffeeTypesAtom)
-
-    const updatedFilters = {
-        type: type !== undefined ? type : currentState.filters?.type,
-        text: text !== undefined ? text : currentState.filters?.text,
-    }
-
-    if (type) {
-        const updatedTypes = coffeeTypes.map((item) => ({
-            ...item,
-            isSelect: item.type === type,
-        }))
-        set(coffeeTypesAtom, updatedTypes)
-    }
-
-    set(coffeeAtom, {
-        ...currentState,
-        filters: updatedFilters,
-    })
-
-    set(getCoffeeAtom)
-})
 
 export const coffeeAtom = atom<CoffeeState>(INITIAL_STATE)
 

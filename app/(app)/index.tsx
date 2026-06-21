@@ -1,9 +1,9 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { router } from 'expo-router'
 
-import Button from '../../shared/Button/Button'
 import { Colors, Fonts, Gaps, Spacing } from '../../shared/tokens'
-import Title from '../../shared/Title/Title'
+import Title from '../../shared/ui/title/Title'
+import Button from '../../shared/ui/button/Button'
 
 export default function HomeScreen() {
     const handlePress = () => {

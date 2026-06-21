@@ -1,8 +1,8 @@
 import { StyleSheet, FlatList } from 'react-native'
 import Button from './button'
 import { useAtomValue, useSetAtom } from 'jotai'
-import { coffeeTypesAtom, setFiltersCoffeeAtom } from '../../../entities/coffee/model/state'
 import { Gaps, Spacing } from '../../../shared/tokens'
+import { coffeeTypesAtom, setFiltersCoffeeAtom } from '../../filterCoffee/model/state'
 
 export default function FilterTabs() {
     const setFilters = useSetAtom(setFiltersCoffeeAtom)
