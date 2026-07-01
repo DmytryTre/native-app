@@ -16,7 +16,12 @@ export default function RootLayout() {
     return (
         <Tabs tabBar={(props) => <TabBar {...props} />} screenOptions={{ headerShown: false }}>
             <Tabs.Screen name="index" />
-            <Tabs.Screen name="success" />
+            <Tabs.Screen
+                name="success"
+                options={{
+                    href: '/catalog/success',
+                }}
+            />
         </Tabs>
     )
 }

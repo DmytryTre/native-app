@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Svg, { Rect, Defs, LinearGradient, Stop } from 'react-native-svg'
-const RectangleIcone = () => (
+const RectangleIcon = () => (
     <Svg width={10} height={5} fill="none">
         <Rect width={10} height={5} fill="url(#a)" rx={2.5} />
         <Defs>
@@ -18,4 +18,4 @@ const RectangleIcone = () => (
         </Defs>
     </Svg>
 )
-export default RectangleIcone
+export default RectangleIcon

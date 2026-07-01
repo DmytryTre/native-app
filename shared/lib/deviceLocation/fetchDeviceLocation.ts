@@ -1,6 +1,11 @@
 import * as Location from 'expo-location'
 
 export const fetchDeviceLocation = async (): Promise<Location.LocationObject> => {
+    const isProviderEnabled = await Location.hasServicesEnabledAsync()
+    if (!isProviderEnabled) {
+        throw new Error('Геолокация отключена на устройстве. Включите GPS в настройках.')
+    }
+
     const currentPermission = await Location.getForegroundPermissionsAsync()
     let status = currentPermission.status
 
@@ -18,7 +23,23 @@ export const fetchDeviceLocation = async (): Promise<Location.LocationObject> =>
         return lastKnown
     }
 
-    return await Location.getCurrentPositionAsync({
-        accuracy: Location.Accuracy.Balanced,
-    })
+    const controller = new AbortController()
+
+    const timeoutId = setTimeout(() => {
+        controller.abort()
+    }, 15000)
+
+    try {
+        const position = await Location.getCurrentPositionAsync({
+            accuracy: Location.Accuracy.Balanced,
+        })
+        return position
+    } catch (error) {
+        if (controller.signal.aborted) {
+            throw new Error('Превышено время ожидания геолокации. Попробуйте снова.')
+        }
+        throw error
+    } finally {
+        clearTimeout(timeoutId)
+    }
 }

@@ -13,8 +13,12 @@ export default function CatalogHeader() {
         <View style={{ ...styles.container, paddingTop: top }}>
             <Text style={styles.headerText}>Адрес</Text>
             <View style={styles.adressContainer}>
-                <AdressText color={Colors.lightSilver} />
-                <ChangeLocationButton color={Colors.lightSilver} />
+                <ChangeLocationButton
+                    style={styles.adressContainer}
+                    text={<AdressText color={Colors.lightSilver} />}
+                    color={Colors.lightSilver}
+                    fromCatalog={true}
+                />
             </View>
             <SearchCoffee />
         </View>
@@ -33,6 +37,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         gap: 10,
-        paddingBottom: 20,
+        paddingBottom: Spacing.s20,
     },
 })

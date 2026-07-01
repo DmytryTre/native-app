@@ -1,20 +1,23 @@
-import { Pressable, StyleSheet, TextInput, TextInputProps, View, Image } from 'react-native'
+import { StyleSheet, TextInput, TextInputProps, View, Image } from 'react-native'
 import { Colors, Radius, Fonts, Spacing } from '../../tokens'
-export default function Input(props: TextInputProps) {
+export default function InputSearch(props: TextInputProps) {
     return (
-        <View>
+        <View style={styles.container}>
             <TextInput style={styles.input} placeholderTextColor={Colors.silver} {...props} />
-            <Pressable style={styles.searchIcon}>
+            <View style={styles.searchIcon}>
                 <Image
                     resizeMode="contain"
                     source={require('../../../assets/images/icon-search.png')}
                 />
-            </Pressable>
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        justifyContent: 'center',
+    },
     input: {
         height: Spacing.s58,
         backgroundColor: Colors.gray,
@@ -26,9 +29,8 @@ const styles = StyleSheet.create({
     },
     searchIcon: {
         position: 'absolute',
-        left: 0,
-        width: 20,
+        left: Spacing.s20,
+        width: Spacing.s20,
         height: Spacing.s20,
-        padding: Spacing.s20,
     },
 })

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Svg, { Path } from 'react-native-svg'
-const EditIcone = ({ color = '#303336' }: { color?: string }) => (
+const EditIcon = ({ color = '#303336' }: { color?: string }) => (
     <Svg width={12} height={12} fill="none">
         <Path
             stroke={color}
@@ -23,4 +23,4 @@ const EditIcone = ({ color = '#303336' }: { color?: string }) => (
         />
     </Svg>
 )
-export default EditIcone
+export default EditIcon

@@ -1,7 +1,7 @@
 import { useSetAtom } from 'jotai'
 import { useState } from 'react'
 import { setFiltersCoffeeAtom } from '../../../features/filterCoffee/model/state'
-import Input from '../../../shared/ui/input/Input'
+import InputSearch from '../../../shared/ui/inputSearch/InputSearch'
 
 export default function SearchCoffee() {
     const [text, setText] = useState<string>('')
@@ -12,7 +12,7 @@ export default function SearchCoffee() {
     }
 
     return (
-        <Input
+        <InputSearch
             value={text}
             onChangeText={setText}
             onSubmitEditing={() => handleSend(text)}

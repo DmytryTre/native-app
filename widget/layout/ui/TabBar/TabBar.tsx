@@ -1,24 +1,20 @@
-import BugIcone from '@/assets/images/icons/bug'
-import HomeIcone from '@/assets/images/icons/home'
-import RectangleIcone from '@/assets/images/icons/rectangle'
+import BugIcon from '@/assets/images/icons/bug'
+import HomeIcon from '@/assets/images/icons/home'
+import RectangleIcon from '@/assets/images/icons/rectangle'
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native'
-import { HandlePressProps, tabNames } from './interfaces'
+import { tabNames } from './interfaces'
 import { Spacing, Colors, Radius } from '@/../shared/tokens'
 
 export default function TabBar({ state, navigation }: BottomTabBarProps) {
-    const handlePress = ({ route, navigation }: HandlePressProps) => {
-        navigation.navigate(route.name, route.params)
-    }
-
     const renderIcon = (isFocused: boolean, name: string) => {
         const isCatalogIndex = name === 'index'
         const isSuccessTab = name.startsWith('success')
         return (
             <View style={styles.icone}>
-                {isCatalogIndex && <HomeIcone isFocused={isFocused} />}
-                {isSuccessTab && <BugIcone isFocused={isFocused} />}
-                {isFocused && <RectangleIcone />}
+                {isCatalogIndex && <HomeIcon isFocused={isFocused} />}
+                {isSuccessTab && <BugIcon isFocused={isFocused} />}
+                {isFocused && <RectangleIcon />}
             </View>
         )
     }
@@ -28,7 +24,7 @@ export default function TabBar({ state, navigation }: BottomTabBarProps) {
             {state.routes.reduce<React.JSX.Element[]>((acc, route) => {
                 const { name, key } = route
 
-                const isSuccessTab = name === 'success/index'
+                const isSuccessTab = name === 'success' || name === 'success/index'
                 const isIndexTab = name === 'index'
 
                 if (!isIndexTab && !isSuccessTab) {
@@ -50,12 +46,20 @@ export default function TabBar({ state, navigation }: BottomTabBarProps) {
 
                 const renderIndex = acc.length
 
+                const onTabPress = () => {
+                    if (isSuccessTab) {
+                        navigation.navigate('success', { screen: 'index' })
+                    } else {
+                        navigation.navigate(route.name, route.params)
+                    }
+                }
+
                 acc.push(
                     <View key={key} style={styles.tabContainer}>
                         {renderIndex !== 0 && <View style={styles.divider} />}
 
                         <TouchableOpacity
-                            onPress={() => handlePress({ route, navigation })}
+                            onPress={onTabPress}
                             accessibilityLabel={tabLabel}
                             accessibilityRole="tab"
                             accessibilityState={{ selected: isFocused }}

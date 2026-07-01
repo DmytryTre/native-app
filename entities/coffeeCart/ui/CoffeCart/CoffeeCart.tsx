@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import { BlurView } from 'expo-blur'
 import { Colors, Radius, Fonts, Spacing } from '@/../shared/tokens'
 import { CoffeeData } from '../../../coffee/model/interfaces'
+import { CartTitle } from '../../../../shared/ui/cartTitle/CartTitle'
+import { CartDescription } from '../../../../shared/ui/cartDescription/CartDescription'
 
 export default function Cart({ name, image, subTitle, price, rating }: CoffeeData) {
     return (
@@ -16,8 +18,8 @@ export default function Cart({ name, image, subTitle, price, rating }: CoffeeDat
                 </View>
             </View>
             <View style={styles.textContainer}>
-                <Text style={styles.title}>{name}</Text>
-                <Text style={styles.subTitle}>{subTitle}</Text>
+                <CartTitle text={name} />
+                <CartDescription text={subTitle} />
                 <Text style={styles.price}>{price} ₽</Text>
             </View>
         </View>
@@ -67,14 +69,6 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         padding: Spacing.s10,
-    },
-    title: {
-        fontSize: Fonts.fs16,
-        color: Colors.charcoal,
-    },
-    subTitle: {
-        fontSize: Fonts.fs13,
-        color: Colors.mediumGray,
     },
     price: {
         fontFamily: Fonts.semibold,

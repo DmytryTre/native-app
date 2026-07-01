@@ -1,13 +1,14 @@
 import { Text, StyleSheet } from 'react-native'
-import { useAtomValue } from 'jotai'
-import { locationAtom } from '../model/state'
 import { Fonts } from '../../../shared/tokens'
+import { useAtomValue } from 'jotai'
+import { savedAddressAtom } from '../model/state'
 
 export default function AdressText({ color }: { color: string }) {
-    const location = useAtomValue(locationAtom)
+    const { addressText } = useAtomValue(savedAddressAtom)
+
     return (
         <Text style={{ ...styles.text, color: color }}>
-            {location ? JSON.stringify(location) : 'Адрес не установлен'}
+            {addressText ? addressText : 'Адрес не установлен'}
         </Text>
     )
 }
