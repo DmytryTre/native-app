@@ -7,10 +7,9 @@ export type CoffeeState = {
     isLoading: boolean
     error: string | null
     data: CoffeeData[] | null
+    currentCoffee: CoffeeData | null
     filters: CoffeeRequest
 }
-
-export type CoffeeResponse = CoffeeData[]
 
 export type CoffeeData = {
     id: number

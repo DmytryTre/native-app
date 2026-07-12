@@ -3,50 +3,18 @@ import axios, { AxiosError } from 'axios'
 
 import { API } from '../api/api'
 
-import { CoffeeRequest, CoffeeResponse, CoffeeState } from './interfaces'
+import { CoffeeData, CoffeeState } from './interfaces'
 
 const INITIAL_STATE: CoffeeState = {
     isLoading: false,
     error: null,
     data: null,
+    currentCoffee: null,
     filters: {
         type: '',
         text: '',
     },
 }
-
-export const coffeeTypesAtom = atom([
-    { name: 'Все', type: 'all', isSelect: true },
-    { name: 'Капучино', type: 'cappuccino', isSelect: false },
-    { name: 'Латте', type: 'latte', isSelect: false },
-    { name: 'Макиатто', type: 'macchiato', isSelect: false },
-    { name: 'Американо', type: 'americano', isSelect: false },
-])
-
-export const setFiltersCoffeeAtom = atom(null, (get, set, { type, text }: CoffeeRequest) => {
-    const currentState = get(coffeeAtom)
-    const coffeeTypes = get(coffeeTypesAtom)
-
-    const updatedFilters = {
-        type: type !== undefined ? type : currentState.filters?.type,
-        text: text !== undefined ? text : currentState.filters?.text,
-    }
-
-    if (type) {
-        const updatedTypes = coffeeTypes.map((item) => ({
-            ...item,
-            isSelect: item.type === type,
-        }))
-        set(coffeeTypesAtom, updatedTypes)
-    }
-
-    set(coffeeAtom, {
-        ...currentState,
-        filters: updatedFilters,
-    })
-
-    set(getCoffeeAtom)
-})
 
 export const coffeeAtom = atom<CoffeeState>(INITIAL_STATE)
 
@@ -60,32 +28,61 @@ export const getCoffeeAtom = atom(
             type: filters.type === 'all' ? '' : filters.type,
         }
 
-        set(coffeeAtom, {
+        set(coffeeAtom, (prev) => ({
+            ...prev,
             isLoading: true,
             error: null,
-            data: null,
             filters: apiParams,
-        })
+        }))
 
         try {
-            const { data } = await axios.get<CoffeeResponse>(API, {
+            const { data } = await axios.get<CoffeeData[]>(API, {
                 params: apiParams,
             })
-            set(coffeeAtom, {
+            set(coffeeAtom, (prev) => ({
+                ...prev,
                 isLoading: false,
                 error: null,
                 data: data,
                 filters: apiParams,
-            })
+            }))
         } catch (error) {
             if (error instanceof AxiosError) {
-                set(coffeeAtom, {
+                set(coffeeAtom, (prev) => ({
+                    ...prev,
                     isLoading: false,
                     error: error.response?.data.message,
                     data: null,
                     filters: apiParams,
-                })
+                }))
             }
         }
     },
 )
+
+export const getCoffeeAtomById = atom(null, async (get, set, id: number) => {
+    set(coffeeAtom, (prev) => ({
+        ...prev,
+        isLoading: true,
+        error: null,
+    }))
+
+    try {
+        const { data } = await axios.get<CoffeeData>(`${API}id/${id}`)
+        set(coffeeAtom, (prev) => ({
+            ...prev,
+            currentCoffee: { ...data, size: 'M' },
+            isLoading: false,
+            error: null,
+        }))
+    } catch (error) {
+        if (error instanceof AxiosError) {
+            set(coffeeAtom, (prev) => ({
+                ...prev,
+                isLoading: false,
+                error: error.response?.data.message,
+                currentCoffee: null,
+            }))
+        }
+    }
+})

@@ -9,7 +9,13 @@
       "@/assets/*": [
         "./assets/*"
       ]
-    }
+    },
+    "moduleSuffixes": [
+      ".ios",
+      ".android",
+      ".native",
+      ""
+    ]
   },
   "include": [
     "**/*.ts",

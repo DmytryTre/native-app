@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Svg, { Path } from 'react-native-svg'
-const HomeIcone = ({ isFocused }: { isFocused: boolean }) => (
+const HomeIcon = ({ isFocused }: { isFocused: boolean }) => (
     <Svg width={24} height={24} fill="none">
         <Path
             fill={isFocused ? '#C67C4E' : '#8D8D8D'}
@@ -9,4 +9,4 @@ const HomeIcone = ({ isFocused }: { isFocused: boolean }) => (
         />
     </Svg>
 )
-export default HomeIcone
+export default HomeIcon

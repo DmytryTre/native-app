@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import { Animated, Pressable, PressableProps, StyleSheet, Text } from 'react-native'
-import { Colors, Spacing, Radius, Fonts } from '../tokens'
+import { Colors, Spacing, Radius, Fonts } from '../../tokens'
 
-const Button = ({ text, ...props }: PressableProps & { text: string }) => {
+const Button = ({ text, disabled, ...props }: PressableProps & { text: string }) => {
     const animValue = useRef(new Animated.Value(0)).current
 
     const color = animValue.interpolate({
@@ -11,6 +11,8 @@ const Button = ({ text, ...props }: PressableProps & { text: string }) => {
     })
 
     const handleFade = (isPress: boolean, animValue: Animated.Value) => {
+        if (disabled) return
+
         Animated.timing(animValue, {
             toValue: isPress ? 100 : 0,
             duration: 100,
@@ -21,10 +23,17 @@ const Button = ({ text, ...props }: PressableProps & { text: string }) => {
     return (
         <Pressable
             {...props}
+            disabled={disabled}
             onPressIn={() => handleFade(true, animValue)}
             onPressOut={() => handleFade(false, animValue)}
         >
-            <Animated.View style={[styles.button, { backgroundColor: color }]}>
+            <Animated.View
+                style={[
+                    styles.button,
+                    { backgroundColor: color },
+                    disabled && styles.disabledButton,
+                ]}
+            >
                 <Text style={styles.text}>{text}</Text>
             </Animated.View>
         </Pressable>
@@ -37,6 +46,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: Spacing.s63,
         borderRadius: Radius.br16,
+    },
+    disabledButton: {
+        opacity: 0.5,
     },
     text: {
         fontSize: Fonts.fs16,

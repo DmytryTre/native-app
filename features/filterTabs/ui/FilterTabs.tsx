@@ -1,41 +1,31 @@
-import { StyleSheet, FlatList } from 'react-native'
-import Button from './button'
+import React from 'react'
 import { useAtomValue, useSetAtom } from 'jotai'
-import { coffeeTypesAtom, setFiltersCoffeeAtom } from '../../../entities/coffee/model/state'
-import { Gaps, Spacing } from '../../../shared/tokens'
+
+import { Spacing } from '../../../shared/tokens'
+import { coffeeTypesAtom, setFiltersCoffeeAtom } from '../../filterCoffee/model/state'
+import SegmentedTabs, { TabItem } from '../../../shared/ui/segmentedTabs/SegmentedTabs'
 
 export default function FilterTabs() {
     const setFilters = useSetAtom(setFiltersCoffeeAtom)
     const coffeeTypes = useAtomValue(coffeeTypesAtom)
 
+    const tabsData: TabItem<string>[] = coffeeTypes.map((item) => ({
+        id: item.type,
+        label: item.name,
+        isSelected: item.isSelect,
+        value: item.type,
+    }))
+
     const handlePress = (type: string) => {
-        setFilters({ type: type })
+        setFilters({ type })
     }
 
     return (
-        <FlatList
-            data={coffeeTypes}
-            style={styles.flatList}
-            contentContainerStyle={styles.content}
-            horizontal
-            renderItem={({ item }) => (
-                <Button
-                    text={item.name}
-                    isSelect={item.isSelect}
-                    onPress={() => handlePress(item.type)}
-                />
-            )}
+        <SegmentedTabs
+            data={tabsData}
+            onSelect={handlePress} // TypeScript строго следит, чтобы handlePress принимал string
+            containerStyle={{ marginLeft: Spacing.s30 }}
+            contentStyle={{ paddingVertical: Spacing.s30 }}
         />
     )
 }
-
-const styles = StyleSheet.create({
-    flatList: {
-        marginLeft: Spacing.s30,
-        overflowX: 'hidden',
-    },
-    content: {
-        gap: Gaps.g10,
-        paddingVertical: Spacing.s30,
-    },
-})

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Svg, { Path } from 'react-native-svg'
-const BugIcone = ({ isFocused }: { isFocused: boolean }) => (
+const BugIcon = ({ isFocused }: { isFocused: boolean }) => (
     <Svg width={24} height={24} fill="none">
         <Path
             fill={isFocused ? '#C67C4E' : '#8D8D8D'}
@@ -14,4 +14,4 @@ const BugIcone = ({ isFocused }: { isFocused: boolean }) => (
         />
     </Svg>
 )
-export default BugIcone
+export default BugIcon

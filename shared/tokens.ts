@@ -10,6 +10,7 @@ export const Colors = {
     darkBlue: '#2F4B4E',
     lightSilver: '#DDDDDD',
     mediumGray: '#9B9B9B',
+    paleGray: '#EAEAEA',
     ultraLightGray: '#DEDEDE',
     charcoal: '#2F2D2C',
 }
@@ -35,6 +36,7 @@ export const Spacing = {
     s30: 30,
     s34: 34,
     s38: 38,
+    s44: 44,
     s46: 46,
     s50: 50,
     s58: 58,
@@ -51,5 +53,6 @@ export const Fonts = {
     fs14: 14,
     fs16: 16,
     fs18: 18,
+    fs20: 20,
     fs34: 34,
 }

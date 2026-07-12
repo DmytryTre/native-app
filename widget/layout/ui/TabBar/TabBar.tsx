@@ -1,70 +1,78 @@
-import BugIcone from '@/assets/images/icons/bug'
-import HomeIcone from '@/assets/images/icons/home'
-import RectangleIcone from '@/assets/images/icons/rectangle'
+import BugIcon from '@/assets/images/icons/bug'
+import HomeIcon from '@/assets/images/icons/home'
+import RectangleIcon from '@/assets/images/icons/rectangle'
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
-import { ParamListBase, TabNavigationState } from '@react-navigation/native'
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native'
-import { HandlePressProps, tabNames } from './interfaces'
+import { tabNames } from './interfaces'
 import { Spacing, Colors, Radius } from '@/../shared/tokens'
 
 export default function TabBar({ state, navigation }: BottomTabBarProps) {
-    const handlePress = (props: HandlePressProps) => {
-        const { route, navigation: nav, state: tabState } = props
-        const event = navigation?.emit({
-            type: 'tabPress',
-            target: route.key,
-            canPreventDefault: true,
-        })
-
-        const isFocused = isTabFoced(tabState, route)
-
-        if (!isFocused && !event?.defaultPrevented) {
-            nav.navigate(route.name, route.params)
-        }
-    }
-
-    const isTabFoced = (
-        tabState: TabNavigationState<ParamListBase>,
-        route: HandlePressProps['route'],
-    ) => tabState.index === tabState.routes.findIndex((r) => r.key === route.key)
-
-    const renderIcone = (isFocused: boolean, name: string) => {
+    const renderIcon = (isFocused: boolean, name: string) => {
+        const isCatalogIndex = name === 'index'
+        const isSuccessTab = name.startsWith('success')
         return (
             <View style={styles.icone}>
-                {name === 'index' && <HomeIcone isFocused={isFocused} />}
-                {name === 'success' && <BugIcone isFocused={isFocused} />}
-                {isFocused && <RectangleIcone />}
+                {isCatalogIndex && <HomeIcon isFocused={isFocused} />}
+                {isSuccessTab && <BugIcon isFocused={isFocused} />}
+                {isFocused && <RectangleIcon />}
             </View>
         )
     }
 
     return (
         <View style={styles.container}>
-            {state.routes.map((route, index) => {
+            {state.routes.reduce<React.JSX.Element[]>((acc, route) => {
                 const { name, key } = route
 
-                const currentTabKey = name as keyof typeof tabNames
+                const isSuccessTab = name === 'success' || name === 'success/index'
+                const isIndexTab = name === 'index'
 
-                const tabLabel = tabNames[currentTabKey] || name
+                if (!isIndexTab && !isSuccessTab) {
+                    return acc
+                }
 
-                const isFocused = isTabFoced(state, route)
+                const cleanName = isSuccessTab ? 'success' : 'index'
 
-                return (
+                const activeRoute = state.routes[state.index]
+                const isActiveRouteSuccess = activeRoute?.name.startsWith('success')
+                const isActiveRouteIndex = activeRoute?.name === 'index'
+
+                const isFocused =
+                    (cleanName === 'success' && isActiveRouteSuccess) ||
+                    (cleanName === 'index' && isActiveRouteIndex)
+
+                const currentTabKey = cleanName as keyof typeof tabNames
+                const tabLabel = tabNames[currentTabKey] || cleanName
+
+                const renderIndex = acc.length
+
+                const onTabPress = () => {
+                    if (isSuccessTab) {
+                        navigation.navigate('success', { screen: 'index' })
+                    } else {
+                        navigation.navigate(route.name, route.params)
+                    }
+                }
+
+                acc.push(
                     <View key={key} style={styles.tabContainer}>
-                        {index !== 0 && <View style={styles.divider} />}
+                        {renderIndex !== 0 && <View style={styles.divider} />}
+
                         <TouchableOpacity
-                            onPress={() => handlePress({ route, navigation, state })}
+                            onPress={onTabPress}
                             accessibilityLabel={tabLabel}
                             accessibilityRole="tab"
                             accessibilityState={{ selected: isFocused }}
                             style={styles.tab}
                         >
-                            {renderIcone(isFocused, name)}
+                            {renderIcon(isFocused, cleanName)}
                             <Text style={styles.text}>{tabLabel}</Text>
                         </TouchableOpacity>
-                    </View>
+                    </View>,
                 )
-            })}
+
+                return acc
+            }, [])}
         </View>
     )
 }

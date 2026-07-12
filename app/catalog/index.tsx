@@ -1,22 +1,15 @@
-import { useEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
+import { StatusBar } from 'expo-status-bar' // 1. Импортируем StatusBar
 
-import { useSetAtom } from 'jotai'
-import { getCoffeeAtom } from '../../entities/coffee/model/state'
 import CoffeeCatalog from '../../widget/coffeeCatalog/ui/CoffeeCatalog/CoffeeCatalog'
-import Search from '../../features/search/ui/Search'
+import CatalogHeader from '../../widget/catalogHeader/ui/CatalogHeader'
 import { Colors } from '../../shared/tokens'
 
 export default function Catalog() {
-    const getCoffee = useSetAtom(getCoffeeAtom)
-
-    useEffect(() => {
-        getCoffee()
-    }, [])
-
     return (
         <View style={styles.container}>
-            <Search />
+            <StatusBar style="light" />
+            <CatalogHeader />
             <CoffeeCatalog />
         </View>
     )

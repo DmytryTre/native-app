@@ -3,7 +3,6 @@
     "name": "native-app",
     "slug": "native-app",
     "version": "1.0.0",
-    "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "best-coffee",
     "userInterfaceStyle": "automatic",
@@ -17,7 +16,8 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.nativeapp"
     },
     "web": {
       "output": "static",
@@ -25,7 +25,7 @@
     },
     "plugins": [
       [
-      "expo-font",
+        "expo-font",
         {
           "fonts": [
             "./assets/fonts/Sora-Regular.ttf",
