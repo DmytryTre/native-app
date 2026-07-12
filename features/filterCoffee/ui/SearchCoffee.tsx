@@ -1,6 +1,6 @@
 import { useSetAtom } from 'jotai'
 import { useState } from 'react'
-import { setFiltersCoffeeAtom } from '../../../features/filterCoffee/model/state'
+import { setFiltersCoffeeAtom } from '../model/state'
 import InputSearch from '../../../shared/ui/inputSearch/InputSearch'
 
 export default function SearchCoffee() {

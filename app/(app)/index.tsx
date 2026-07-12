@@ -1,9 +1,10 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { router } from 'expo-router'
 
-import { Colors, Fonts, Gaps, Spacing } from '../../shared/tokens'
+import { Colors, Fonts, Gaps } from '../../shared/tokens'
 import Title from '../../shared/ui/title/Title'
 import Button from '../../shared/ui/button/Button'
+import SafeScreenContainer from '../../shared/ui/safeScreenContainer/SafeScreenContainer'
 
 export default function HomeScreen() {
     const handlePress = () => {
@@ -17,11 +18,11 @@ export default function HomeScreen() {
                 resizeMode="contain"
                 source={require('../../assets/images/coffee.png')}
             />
-            <View style={styles.content}>
+            <SafeScreenContainer style={styles.content}>
                 <Title text="Одно из самых вкусных кофе в городе!" />
                 <Text style={styles.text}>Свежие зёрна, настоящая арабика и бережная обжарка</Text>
                 <Button text="Начать" onPress={handlePress} />
-            </View>
+            </SafeScreenContainer>
         </View>
     )
 }
@@ -40,7 +41,6 @@ const styles = StyleSheet.create({
     },
     content: {
         gap: Gaps.g50,
-        padding: Spacing.s30,
     },
     text: {
         fontSize: Fonts.fs14,

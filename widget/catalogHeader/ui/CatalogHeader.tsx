@@ -1,16 +1,13 @@
 import { StyleSheet, View, Text } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
-
 import { Spacing, Colors } from '../../../shared/tokens'
-import SearchCoffee from '../../../entities/searchCoffee/ui/SearchCoffee'
+import SearchCoffee from '../../../features/filterCoffee/ui/SearchCoffee'
 import AdressText from '../../../entities/location/ui/AdressText'
 import ChangeLocationButton from '../../../features/changeLocation/ui/ChangeLocationButton'
+import SafeScreenContainer from '../../../shared/ui/safeScreenContainer/SafeScreenContainer'
 
 export default function CatalogHeader() {
-    const { top } = useSafeAreaInsets()
-
     return (
-        <View style={{ ...styles.container, paddingTop: top }}>
+        <SafeScreenContainer style={styles.container}>
             <Text style={styles.headerText}>Адрес</Text>
             <View style={styles.adressContainer}>
                 <ChangeLocationButton
@@ -21,13 +18,12 @@ export default function CatalogHeader() {
                 />
             </View>
             <SearchCoffee />
-        </View>
+        </SafeScreenContainer>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        padding: Spacing.s30,
         backgroundColor: Colors.black,
     },
     headerText: {

@@ -52,11 +52,13 @@ const styles = StyleSheet.create({
     leftContainer: {
         flex: 1,
         alignItems: 'flex-start',
+        height: 30,
     },
     titleContainer: {
         flex: 4,
         alignItems: 'center',
         justifyContent: 'center',
+        height: 30,
     },
     rightContainer: {
         flex: 1,

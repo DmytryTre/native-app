@@ -1,18 +1,17 @@
 import { Stack } from 'expo-router'
 import HeaderWithBackButton from '../../../shared/ui/headerWithBackButton/HeaderWithBackButton'
-import { StatusBar } from 'react-native'
+import { StatusBar } from 'expo-status-bar'
 
 export default function SuccessLayout() {
     return (
         <>
-            <StatusBar barStyle="dark-content" />
-
+            <StatusBar style="dark" />
             <Stack>
                 <Stack.Screen name="index" options={{ headerShown: false }} />
                 <Stack.Screen
                     name="address"
                     options={{
-                        headerLeft: () => <HeaderWithBackButton title="Изменить адрес" />,
+                        header: () => <HeaderWithBackButton title="Изменить адрес" />,
                     }}
                 />
             </Stack>

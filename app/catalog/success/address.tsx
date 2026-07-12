@@ -1,15 +1,16 @@
-import { View, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { ChangeLocationForm } from '../../../features/changeLocation/ui/ChangeLocationForm'
 import { Spacing } from '../../../shared/tokens'
+import SafeScreenContainer from '../../../shared/ui/safeScreenContainer/SafeScreenContainer'
 
 export default function Address() {
     return (
-        <View style={styles.container}>
+        <SafeScreenContainer style={styles.container}>
             <ChangeLocationForm />
-        </View>
+        </SafeScreenContainer>
     )
 }
 
 const styles = StyleSheet.create({
-    container: { padding: Spacing.s30 },
+    container: { paddingBottom: Spacing.s132 },
 })
