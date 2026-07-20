@@ -47,18 +47,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingBottom: Spacing.s16,
+        padding: Spacing.s16,
     },
     leftContainer: {
         flex: 1,
         alignItems: 'flex-start',
-        height: 30,
+        height: Spacing.s30,
     },
     titleContainer: {
         flex: 4,
         alignItems: 'center',
         justifyContent: 'center',
-        height: 30,
+        height: Spacing.s30,
     },
     rightContainer: {
         flex: 1,
