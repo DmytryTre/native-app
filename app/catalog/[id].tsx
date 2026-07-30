@@ -4,9 +4,5 @@ import { CoffeeDetail } from '../../widget/coffeeDetail/ui/CoffeeDetail'
 export default function CoffeeCard() {
     const { id } = useLocalSearchParams()
 
-    return (
-        <>
-            <CoffeeDetail id={Number(id)} />
-        </>
-    )
+    return <CoffeeDetail id={Number(id)} />
 }

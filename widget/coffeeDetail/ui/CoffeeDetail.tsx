@@ -5,10 +5,10 @@ import { coffeeAtom, getCoffeeAtomById } from '../../../entities/coffee/model/st
 import Loader from '../../../shared/ui/loader/Loader'
 import SafeScreenContainer from '../../../shared/ui/safeScreenContainer/SafeScreenContainer'
 import CoffeeCard from '../../../entities/coffee/ui/CoffeeCard'
-import CoffeeSizeSelector, {
-    CoffeeSize,
-} from '../../../features/coffeeSizeSelector/ui/CoffeeSizeSelector'
+import CoffeeSizeSelector from '../../../features/coffeeSizeSelector/ui/CoffeeSizeSelector'
 import { CartTitle } from '../../../shared/ui/cartTitle/CartTitle'
+import { CoffeeSize } from '../../../entities/cart/model/interfaces'
+import DetailFooter from '../../changeCoffeeCount/ui/DetailFooter'
 
 interface CoffeeDetailProps {
     id: number
@@ -34,10 +34,13 @@ export function CoffeeDetail({ id }: CoffeeDetailProps) {
     }
 
     return (
-        <SafeScreenContainer>
-            <CoffeeCard variant="large" {...currentCoffee!} />
-            <CartTitle text="Размер" />
-            <CoffeeSizeSelector value={selectedSize} onChange={setSelectedSize} />
-        </SafeScreenContainer>
+        <>
+            <SafeScreenContainer>
+                <CoffeeCard variant="large" {...currentCoffee!} />
+                <CartTitle text="Размер" />
+                <CoffeeSizeSelector value={selectedSize} onChange={setSelectedSize} />
+            </SafeScreenContainer>
+            <DetailFooter id={id} price={currentCoffee?.price} size={selectedSize} />
+        </>
     )
 }

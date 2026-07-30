@@ -10,17 +10,21 @@ import {
 } from 'react-native'
 import { Colors, Spacing, Radius, Fonts } from '../../tokens'
 
-interface ButtonProps extends PressableProps {
+interface CounterButtonProps extends PressableProps {
     text: string
-    style?: StyleProp<ViewStyle>
+    style?: StyleProp<ViewStyle & { hoverBackgroundColor?: string }>
 }
 
-const Button = ({ text, disabled, style, ...props }: ButtonProps) => {
+const CounterButton = ({ text, disabled, style, ...props }: CounterButtonProps) => {
     const animValue = useRef(new Animated.Value(0)).current
+
+    const baseColor = Colors.white
+    const hoverColor = Colors.mediumGray
+    const textColor = Colors.darkGray
 
     const color = animValue.interpolate({
         inputRange: [0, 100],
-        outputRange: [Colors.warmBrown, Colors.warmBrownHover],
+        outputRange: [baseColor, hoverColor],
     })
 
     const handleFade = (isPress: boolean, animValue: Animated.Value) => {
@@ -43,12 +47,12 @@ const Button = ({ text, disabled, style, ...props }: ButtonProps) => {
             <Animated.View
                 style={[
                     styles.button,
-                    { backgroundColor: color },
                     style,
+                    { backgroundColor: color },
                     disabled && styles.disabledButton,
                 ]}
             >
-                <Text style={styles.text}>{text}</Text>
+                <Text style={[styles.text, { color: textColor }]}>{text}</Text>
             </Animated.View>
         </Pressable>
     )
@@ -58,16 +62,20 @@ const styles = StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: Spacing.s63,
-        borderRadius: Radius.br16,
+        height: Spacing.s28,
+        width: Spacing.s28,
+        borderRadius: Radius.br20,
+        borderWidth: 1,
+        borderColor: Colors.paleGray,
     },
     disabledButton: {
         opacity: 0.5,
     },
     text: {
-        fontSize: Fonts.fs16,
-        color: Colors.white,
+        fontSize: Fonts.fs18,
         fontFamily: Fonts.regular,
+        color: Colors.black,
     },
 })
-export default Button
+
+export default CounterButton

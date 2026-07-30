@@ -60,6 +60,11 @@ export const getCoffeeAtom = atom(
     },
 )
 
+export const fetchCoffeeByIdApi = async (id: number): Promise<CoffeeData> => {
+    const { data } = await axios.get<CoffeeData>(`${API}id/${id}`)
+    return data
+}
+
 export const getCoffeeAtomById = atom(null, async (get, set, id: number) => {
     set(coffeeAtom, (prev) => ({
         ...prev,
@@ -68,7 +73,7 @@ export const getCoffeeAtomById = atom(null, async (get, set, id: number) => {
     }))
 
     try {
-        const { data } = await axios.get<CoffeeData>(`${API}id/${id}`)
+        const data = await fetchCoffeeByIdApi(id)
         set(coffeeAtom, (prev) => ({
             ...prev,
             currentCoffee: { ...data, size: 'M' },

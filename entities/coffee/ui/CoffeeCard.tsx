@@ -4,6 +4,7 @@ import { Colors, Radius, Fonts, Spacing } from '@/../shared/tokens'
 import { CoffeeData } from '../model/interfaces'
 import { CartTitle } from '../../../shared/ui/cartTitle/CartTitle'
 import { CartDescription } from '../../../shared/ui/cartDescription/CartDescription'
+import AddButton from '../../../features/addToCart/ui/AddButton'
 
 interface CoffeeCardProps extends CoffeeData {
     variant?: 'small' | 'large'
@@ -11,6 +12,7 @@ interface CoffeeCardProps extends CoffeeData {
 }
 
 export default function CoffeeCard({
+    id,
     name,
     image,
     subTitle,
@@ -30,28 +32,26 @@ export default function CoffeeCard({
     )
 
     if (isLarge) {
-        if (isLarge) {
-            return (
-                <View style={styles.containerLarge}>
-                    <Image style={styles.imageLarge} resizeMode="cover" source={{ uri: image }} />
+        return (
+            <View style={styles.containerLarge}>
+                <Image style={styles.imageLarge} resizeMode="cover" source={{ uri: image }} />
 
-                    <View style={styles.detailsHeader}>
-                        <View style={styles.titleWrapper}>
-                            <CartTitle text={name} />
-                            <CartDescription text={subTitle} />
-                        </View>
-                        <View style={styles.ratingDetailsRow}>{renderRatingRow()}</View>
+                <View style={styles.detailsHeader}>
+                    <View style={styles.titleWrapper}>
+                        <CartTitle text={name} />
+                        <CartDescription text={subTitle} />
                     </View>
-
-                    {description && (
-                        <View style={styles.descriptionContainer}>
-                            <CartTitle text="Описание" style={styles.cartTitle} />
-                            <CartDescription text={description} />
-                        </View>
-                    )}
+                    <View style={styles.ratingDetailsRow}>{renderRatingRow()}</View>
                 </View>
-            )
-        }
+
+                {description && (
+                    <View style={styles.descriptionContainer}>
+                        <CartTitle text="Описание" style={styles.cartTitle} />
+                        <CartDescription text={description} />
+                    </View>
+                )}
+            </View>
+        )
     }
 
     return (
@@ -68,7 +68,10 @@ export default function CoffeeCard({
             <View style={styles.textContainerSmall}>
                 <CartTitle text={name} />
                 <CartDescription text={subTitle} />
-                <Text style={styles.priceSmall}>{price} ₽</Text>
+                <View style={styles.addBlock}>
+                    <Text style={styles.priceSmall}>{price} ₽</Text>
+                    <AddButton id={id} text="+" style={styles.addButton} />
+                </View>
             </View>
         </Pressable>
     )
@@ -77,7 +80,7 @@ export default function CoffeeCard({
 const styles = StyleSheet.create({
     // --- Общие стили элементов ---
     star: {
-        fontSize: 12,
+        fontSize: Fonts.fs13,
         marginRight: Spacing.s4,
     },
     ratingText: {
@@ -116,7 +119,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 51,
+        width: Spacing.s50,
         height: Spacing.s25,
     },
     textContainerSmall: {
@@ -126,9 +129,18 @@ const styles = StyleSheet.create({
     priceSmall: {
         fontFamily: Fonts.semibold,
         color: Colors.darkBlue,
-        fontWeight: '600',
         fontSize: Fonts.fs18,
-        marginTop: 'auto',
+    },
+    addBlock: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingTop: Spacing.s10,
+    },
+    addButton: {
+        width: Spacing.s32,
+        height: Spacing.s32,
+        borderRadius: Radius.br10,
     },
 
     // --- Стили для БОЛЬШОЙ карточки (Экран деталей) ---
@@ -160,7 +172,6 @@ const styles = StyleSheet.create({
     ratingTextLarge: {
         color: Colors.black,
         fontSize: Fonts.fs16,
-        fontWeight: '600',
     },
 
     descriptionContainer: {

@@ -21,11 +21,11 @@ export default function RootLayout() {
         <Tabs tabBar={(props) => (!isDetailPage ? <TabBar {...props} /> : null)}>
             <Tabs.Screen options={{ headerShown: false }} name="index" />
             <Tabs.Screen
-                name="success"
+                name="cart"
                 options={{
                     header: () => <HeaderWithBackButton title="Изменить адрес" />,
                     headerShown: false,
-                    href: '/catalog/success',
+                    href: '/catalog/cart',
                 }}
             />
             <Tabs.Screen
