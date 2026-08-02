@@ -16,7 +16,7 @@ export default function ChangeLocationButton({
     fromCatalog = false,
 }: ChangeLocationButtonProps) {
     const handlePress = () => {
-        const targetPath = '/catalog/success/address'
+        const targetPath = '/catalog/cart/address'
 
         if (fromCatalog) {
             router.push(`${targetPath}?from=catalog`)

@@ -9,11 +9,11 @@ import { Spacing, Colors, Radius } from '@/../shared/tokens'
 export default function TabBar({ state, navigation }: BottomTabBarProps) {
     const renderIcon = (isFocused: boolean, name: string) => {
         const isCatalogIndex = name === 'index'
-        const isSuccessTab = name.startsWith('success')
+        const isCartTab = name.startsWith('cart')
         return (
             <View style={styles.icone}>
                 {isCatalogIndex && <HomeIcon isFocused={isFocused} />}
-                {isSuccessTab && <BugIcon isFocused={isFocused} />}
+                {isCartTab && <BugIcon isFocused={isFocused} />}
                 {isFocused && <RectangleIcon />}
             </View>
         )
@@ -24,21 +24,21 @@ export default function TabBar({ state, navigation }: BottomTabBarProps) {
             {state.routes.reduce<React.JSX.Element[]>((acc, route) => {
                 const { name, key } = route
 
-                const isSuccessTab = name === 'success' || name === 'success/index'
+                const isCartTab = name === 'cart' || name === 'cart/index'
                 const isIndexTab = name === 'index'
 
-                if (!isIndexTab && !isSuccessTab) {
+                if (!isIndexTab && !isCartTab) {
                     return acc
                 }
 
-                const cleanName = isSuccessTab ? 'success' : 'index'
+                const cleanName = isCartTab ? 'cart' : 'index'
 
                 const activeRoute = state.routes[state.index]
-                const isActiveRouteSuccess = activeRoute?.name.startsWith('success')
+                const isActiveRouteCart = activeRoute?.name.startsWith('cart')
                 const isActiveRouteIndex = activeRoute?.name === 'index'
 
                 const isFocused =
-                    (cleanName === 'success' && isActiveRouteSuccess) ||
+                    (cleanName === 'cart' && isActiveRouteCart) ||
                     (cleanName === 'index' && isActiveRouteIndex)
 
                 const currentTabKey = cleanName as keyof typeof tabNames
@@ -47,8 +47,8 @@ export default function TabBar({ state, navigation }: BottomTabBarProps) {
                 const renderIndex = acc.length
 
                 const onTabPress = () => {
-                    if (isSuccessTab) {
-                        navigation.navigate('success', { screen: 'index' })
+                    if (isCartTab) {
+                        navigation.navigate('cart', { screen: 'index' })
                     } else {
                         navigation.navigate(route.name, route.params)
                     }

@@ -13,7 +13,7 @@ export function CartDescription({ text, style }: CartDescription) {
 const styles = StyleSheet.create({
     text: {
         color: Colors.mediumGray,
-        fontFamily: Fonts.semibold,
+        fontFamily: Fonts.regular,
         fontSize: Fonts.fs14,
     },
 })

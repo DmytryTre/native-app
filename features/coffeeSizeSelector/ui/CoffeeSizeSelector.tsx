@@ -2,10 +2,9 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import SegmentedTabs, { TabItem } from '../../../shared/ui/segmentedTabs/SegmentedTabs'
 import { Spacing } from '../../../shared/tokens'
+import { CoffeeSize } from '../../../entities/cart/model/interfaces'
 
-const SIZES = ['S', 'M', 'L'] as const
-
-export type CoffeeSize = (typeof SIZES)[number]
+const SIZES = ['S', 'M', 'L'] as CoffeeSize[]
 
 interface CoffeeSizeSelectorProps {
     value: CoffeeSize
@@ -13,7 +12,7 @@ interface CoffeeSizeSelectorProps {
 }
 
 export default function CoffeeSizeSelector({ value, onChange }: CoffeeSizeSelectorProps) {
-    const sizeTabs: TabItem<CoffeeSize>[] = SIZES.map((size: CoffeeSize) => ({
+    const sizeTabs: TabItem<CoffeeSize>[] = SIZES.map((size) => ({
         id: size,
         label: size,
         isSelected: size === value,

@@ -22,8 +22,10 @@ export const Gaps = {
 }
 
 export const Radius = {
+    br20: 20,
     br16: 16,
     br12: 12,
+    br10: 10,
 }
 
 export const Spacing = {
@@ -34,7 +36,9 @@ export const Spacing = {
     s20: 20,
     s25: 25,
     s30: 30,
+    s28: 28,
     s34: 34,
+    s32: 32,
     s38: 38,
     s44: 44,
     s46: 46,
@@ -43,6 +47,7 @@ export const Spacing = {
     s63: 63,
     s99: 99,
     s132: 132,
+    s180: 180,
 }
 
 export const Fonts = {

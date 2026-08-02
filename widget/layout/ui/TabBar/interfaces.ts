@@ -1,4 +1,4 @@
 export enum tabNames {
     index = 'Главная',
-    success = 'Заказ',
+    cart = 'Заказ',
 }

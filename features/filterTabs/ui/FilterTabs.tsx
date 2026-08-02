@@ -9,11 +9,11 @@ export default function FilterTabs() {
     const setFilters = useSetAtom(setFiltersCoffeeAtom)
     const coffeeTypes = useAtomValue(coffeeTypesAtom)
 
-    const tabsData: TabItem<string>[] = coffeeTypes.map((item) => ({
-        id: item.type,
-        label: item.name,
-        isSelected: item.isSelect,
-        value: item.type,
+    const tabsData: TabItem<string>[] = coffeeTypes.map(({ type, name, isSelect }) => ({
+        id: type,
+        label: name,
+        isSelected: isSelect,
+        value: type,
     }))
 
     const handlePress = (type: string) => {
@@ -23,7 +23,7 @@ export default function FilterTabs() {
     return (
         <SegmentedTabs
             data={tabsData}
-            onSelect={handlePress} // TypeScript строго следит, чтобы handlePress принимал string
+            onSelect={handlePress}
             containerStyle={{ marginLeft: Spacing.s30 }}
             contentStyle={{ paddingVertical: Spacing.s30 }}
         />
