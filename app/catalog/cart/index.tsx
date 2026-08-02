@@ -7,6 +7,7 @@ import ChangeLocationButton from '../../../features/changeLocation/ui/ChangeLoca
 import { CartTitle } from '../../../shared/ui/cartTitle/CartTitle'
 import SafeScreenContainer from '../../../shared/ui/safeScreenContainer/SafeScreenContainer'
 import OrderSummary from '../../../entities/cart/ui/CartSummary'
+import SendOrderButton from '../../../features/sendOrderButton/ui/SendOrderButton'
 
 export default function Cart() {
     return (
@@ -25,6 +26,7 @@ export default function Cart() {
             </SafeScreenContainer>
             <SafeScreenContainer>
                 <OrderSummary />
+                <SendOrderButton />
             </SafeScreenContainer>
         </View>
     )

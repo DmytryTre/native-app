@@ -1,8 +1,9 @@
 import { atom } from 'jotai'
 import { atomWithStorage, createJSONStorage } from 'jotai/utils'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { fetchCoffeeByIdApi } from '../../coffee/model/state'
+import { fetchCoffeeByIdApi, setCoffeeAtom } from '../../coffee/model/state'
 import { CartState, Cart, CartDetailedItem, CoffeeSize, UpdatePayload } from './interfaces'
+import { savedAddressAtom } from '../../location/model/state'
 
 const storage = createJSONStorage<CartState>(() => AsyncStorage)
 
@@ -131,3 +132,27 @@ export const updateDetailedItemAtom = atom(
         set(cartDetailedItemsAtom, updatedItems)
     },
 )
+
+export const sendOrderAtom = atom(null, async (get, set) => {
+    const items = get(cartDetailedItemsAtom)
+    const savedAddress = await get(savedAddressAtom)
+
+    // Проверяем, что корзина не пуста и адрес действительно введен
+    if (items.length === 0 || !savedAddress?.addressText) return
+
+    const orderPayload = {
+        adress: savedAddress.addressText,
+        orderItems: items.map((item) => ({
+            id: item.info.id,
+            size: item.info.size,
+            quantity: item.count,
+        })),
+    }
+
+    const isSuccess = await set(setCoffeeAtom, orderPayload)
+
+    if (isSuccess) {
+        set(baseCartAtom, {}) // Очищаем AsyncStorage
+        set(cartDetailedItemsAtom, []) // Очищаем список в UI
+    }
+})

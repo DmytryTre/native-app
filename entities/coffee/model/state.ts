@@ -3,7 +3,7 @@ import axios, { AxiosError } from 'axios'
 
 import { API } from '../api/api'
 
-import { CoffeeData, CoffeeState } from './interfaces'
+import { CoffeeData, CoffeeState, OrderPayload } from './interfaces'
 
 const INITIAL_STATE: CoffeeState = {
     isLoading: false,
@@ -89,5 +89,33 @@ export const getCoffeeAtomById = atom(null, async (get, set, id: number) => {
                 currentCoffee: null,
             }))
         }
+    }
+})
+
+export const setCoffeeAtom = atom(null, async (get, set, orderPayload: OrderPayload) => {
+    set(coffeeAtom, (prev) => ({
+        ...prev,
+        isLoading: true,
+        error: null,
+    }))
+
+    try {
+        await axios.post(`${API}/order`, orderPayload)
+
+        set(coffeeAtom, (prev) => ({
+            ...prev,
+            isLoading: false,
+        }))
+
+        return true
+    } catch (error) {
+        if (error instanceof AxiosError) {
+            set(coffeeAtom, (prev) => ({
+                ...prev,
+                isLoading: false,
+                error: error.response?.data.message || 'Ошибка оформления заказа',
+            }))
+        }
+        return false
     }
 })

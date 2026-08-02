@@ -11,6 +11,7 @@ export default function RootLayout() {
                     header: () => <HeaderWithBackButton title="Изменить адрес" />,
                 }}
             />
+            <Stack.Screen name="success" options={{ headerShown: false }} />
         </Stack>
     )
 }

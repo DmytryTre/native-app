@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Slot, useSegments } from 'expo-router'
 import { useFonts } from 'expo-font'
 import { StatusBar, setStatusBarStyle } from 'expo-status-bar'
+import Notification from '../shared/Notifications/Notification'
 
 export default function RootLayout() {
     const [loaded] = useFonts({
@@ -30,6 +31,7 @@ export default function RootLayout() {
 
     return (
         <>
+            <Notification />
             <StatusBar />
             <Slot />
         </>
