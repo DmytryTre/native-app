@@ -30,7 +30,7 @@ export default function SendOrderButton({ style }: SendOrderButtonProps) {
                 },
                 trigger: {
                     type: Notifications['SchedulableTriggerInputTypes']['TIME_INTERVAL'],
-                    seconds: 5,
+                    seconds: 10,
                 },
             })
         } catch (error) {
