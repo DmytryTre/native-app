@@ -1,8 +1,14 @@
 {
   "expo": {
-    "name": "native-app",
-    "slug": "native-app",
+    "name": "CoffeeStore Demo App",
+    "slug": "dmitrii",
+    "description": "Приложение заказа кофе для практики",
     "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "best-coffee",
     "userInterfaceStyle": "automatic",
@@ -44,7 +50,7 @@
           }
         }
       ],
-        [
+      [
         "expo-notifications",
         {
           "icon": "./assets/images/icons/notification_icon.png",
@@ -55,6 +61,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "daa268d7-9423-4da3-9ccc-60501a4f6a8f"
+      }
+    },
+    "owner": "gloomydoony"
   }
 }
