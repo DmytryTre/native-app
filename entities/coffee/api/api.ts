@@ -1,1 +1,1 @@
-export const API = 'https://purpleschool.ru/coffee-api/'
+export const API = `${process.env.EXPO_PUBLIC_DOMAIN}/coffee-api/`

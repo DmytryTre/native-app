@@ -26,13 +26,13 @@ export default function CartItemList() {
     }
 
     if (!flatCartItems.length) {
-        return null // Пустое состояние теперь красиво обработаем на самом экране Cart
+        return null
     }
 
     return (
         <FlatList
             data={flatCartItems}
-            keyExtractor={(item) => item.uniqueKey} // Добавили ключ для оптимизации FlatList
+            keyExtractor={(item) => item.uniqueKey}
             refreshControl={<RefreshControl refreshing={isLoading} onRefresh={fetchCartDetails} />}
             renderItem={({ item }) => <CartItem {...item} />}
             contentContainerStyle={styles.listContent}
